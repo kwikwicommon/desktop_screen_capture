@@ -1,0 +1,43 @@
+name: desktop_screen_capture
+description: Desktop screen capture interfaces, shared models, and Dart fallback logic.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.10.8
+  flutter: ">=3.35.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  desktop_screen_capture_platform_interface:
+    git:
+      url: https://github.com/kwikwicommon/desktop_screen_capture.git
+      ref: main
+      path: desktop_screen_capture_platform_interface
+  desktop_screen_capture_macos:
+    git:
+      url: https://github.com/kwikwicommon/desktop_screen_capture.git
+      ref: main
+      path: desktop_screen_capture_macos
+  desktop_screen_capture_windows:
+    git:
+      url: https://github.com/kwikwicommon/desktop_screen_capture.git
+      ref: main
+      path: desktop_screen_capture_windows
+  screen_capturer: ^0.2.3
+  path_provider: ^2.1.5
+  path: ^1.9.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  plugin:
+    platforms:
+      macos:
+        default_package: desktop_screen_capture_macos
+      windows:
+        default_package: desktop_screen_capture_windows

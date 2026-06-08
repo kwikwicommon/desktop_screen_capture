@@ -1,0 +1,18 @@
+name: desktop_screen_capture_platform_interface
+description: Platform interface for desktop_screen_capture federated plugins.
+version: 0.1.0
+publish_to: none
+
+environment:
+  sdk: ^3.10.8
+  flutter: ">=3.35.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  plugin_platform_interface: ^2.1.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
