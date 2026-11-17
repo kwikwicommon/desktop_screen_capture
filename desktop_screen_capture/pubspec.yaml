@@ -30,6 +30,9 @@ dependencies:
   path: ^1.9.1
 
 dev_dependencies:
+  uni_lints:
+    git:
+      url: https://github.com/kwikwicommon/uni_lints.git
   flutter_test:
     sdk: flutter
   flutter_lints: ^6.0.0

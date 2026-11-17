@@ -1,0 +1,7 @@
+dependency_overrides:
+  desktop_screen_capture_platform_interface:
+    path: /Users/chaoren/kwikwicommon/desktop_screen_capture/desktop_screen_capture_platform_interface
+  desktop_screen_capture_macos:
+    path: /Users/chaoren/kwikwicommon/desktop_screen_capture/desktop_screen_capture_macos
+  desktop_screen_capture_windows:
+    path: /Users/chaoren/kwikwicommon/desktop_screen_capture/desktop_screen_capture_windows

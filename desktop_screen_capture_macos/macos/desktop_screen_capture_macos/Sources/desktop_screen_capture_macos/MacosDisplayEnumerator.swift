@@ -228,13 +228,17 @@ final class MacosDisplayEnumerator {
   }
 
   private func windowThumbnailData(windowId: Int) -> FlutterStandardTypedData? {
+    // Resolve the pre-ScreenCaptureKit API dynamically so builds targeting macOS 15+ still compile.
+    typealias CaptureWindow = @convention(c) (CGRect, UInt32, UInt32, UInt32) -> Unmanaged<CGImage>?
+    let options: CGWindowImageOption = [.bestResolution, .boundsIgnoreFraming]
     guard
-      let image = CGWindowListCreateImage(
+      let symbol = dlsym(UnsafeMutableRawPointer(bitPattern: -2), "CGWindowListCreateImage"),
+      let image = unsafeBitCast(symbol, to: CaptureWindow.self)(
         .null,
-        .optionIncludingWindow,
+        CGWindowListOption.optionIncludingWindow.rawValue,
         CGWindowID(windowId),
-        [.bestResolution, .boundsIgnoreFraming]
-      )
+        options.rawValue
+      )?.takeRetainedValue()
     else {
       return nil
     }

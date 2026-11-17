@@ -175,7 +175,12 @@ class CaptureRegionSelection {
     required String targetTitle,
   }) {
     if (sourceSize.width <= 0 || sourceSize.height <= 0) return null;
-    final sourceBounds = Rect.fromLTWH(0, 0, sourceSize.width, sourceSize.height);
+    final sourceBounds = Rect.fromLTWH(
+      0,
+      0,
+      sourceSize.width,
+      sourceSize.height,
+    );
     if (!_rectContainsRect(sourceBounds, selectionRect)) return null;
     return CaptureRegionCropPlan(
       selectionRect: selectionRect,
@@ -538,11 +543,17 @@ class CaptureTargetResolver {
     CaptureTargetDescriptor target,
     Iterable<CaptureTargetDescriptor> displays,
   ) {
+    final displayId = target.displayId;
+    if (displayId != null) {
+      for (final display in displays) {
+        if (display.type == CaptureTargetType.display &&
+            display.displayId == displayId) {
+          return display;
+        }
+      }
+    }
     for (final display in displays) {
       if (display.type != CaptureTargetType.display) continue;
-      if (target.displayId != null && display.displayId == target.displayId) {
-        return display;
-      }
       if (display.boundsLogical.overlaps(target.boundsLogical) ||
           display.boundsLogical.contains(target.boundsLogical.center)) {
         return display;
